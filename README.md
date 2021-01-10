@@ -1,4 +1,4 @@
-# TachiLocal
+# MangaBrowser
 
 <img src="/data/v1.0.0.0.jpg"></img>
 
@@ -15,7 +15,7 @@
 
 ****
 
-## Purpose of TachiLocal?
+## Purpose of MangaBrowser?
 
 Browse through your Manga Collections with ease.
 
