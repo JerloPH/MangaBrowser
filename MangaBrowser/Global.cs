@@ -37,7 +37,7 @@ namespace TachiLocal.Global
         // Log Error to File
         public static void LogError(Exception error, bool ShowMsg = false)
         {
-            string fName = pathLogFileLocation + @"\MangaErrorLog.txt";
+            string fName = pathLogFileLocation + @"\AppError.txt";
             try
             {
                 using (StreamWriter w = File.AppendText(fName))
