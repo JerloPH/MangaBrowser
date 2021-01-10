@@ -112,11 +112,11 @@ namespace TachiLocal
         {
             // Read Paths from mangaPaths.txt file in Data folder
             GlobalVar.pathMangaFolder = GlobalVar.ReadAllFromFile(GlobalVar.FILE_MANGAPATH);
-            GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"[{ DateTime.Now.ToString() }]: Manga Path: {GlobalVar.pathMangaFolder}");
+            GlobalVar.Log($"Manga Path: {GlobalVar.pathMangaFolder}");
 
             // Read Paths from mangaTachiyomi.txt file in Data folder
             GlobalVar.pathTachiFolder = GlobalVar.ReadAllFromFile(GlobalVar.FILE_MANGATACHI);
-            GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"[{ DateTime.Now.ToString() }]: Tachiyomi Path: {GlobalVar.pathMangaFolder}");
+            GlobalVar.Log($"Tachiyomi Path: {GlobalVar.pathMangaFolder}");
 
             // Get all Folder Names from specified Path
             string[] sDir = (!String.IsNullOrWhiteSpace(GlobalVar.pathMangaFolder)) ? GlobalVar.pathMangaFolder.Split(',') : null;
@@ -133,7 +133,7 @@ namespace TachiLocal
             // Get all Manga from MangaFolder Path, and Tachiyomi folder
             try
             {
-                GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"[{ DateTime.Now.ToString() }] List of Directories to Add:");
+                GlobalVar.Log($"List of Directories to Add:");
 
                 // Loop thru all folders in Manga Folder
                 if (sDir != null)
@@ -146,14 +146,14 @@ namespace TachiLocal
                             {
                                 // Add to list
                                 list.Add(folder);
-                                GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"[{ DateTime.Now.ToString() }]: {folder}");
+                                GlobalVar.Log($"Added: {folder}");
                             }
                         }
                     }
                 }
                 else
                 {
-                    GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"[{ DateTime.Now.ToString() }]: Empty folders!");
+                    GlobalVar.Log($"Empty Manga folders!");
                 }
 
                 // Loop thru Tachiyomi folder structure
@@ -183,7 +183,7 @@ namespace TachiLocal
                         string j4 = "Manga Summary"; // Description / Summary
                         string[] j5 = new string[] { "" }; // Genre, List
                         string j6 = "Unknown"; // Status
-                        GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"[{ mangaPath }]");
+                        GlobalVar.Log($"Added to ListView: [{ mangaPath }]");
 
                         // Add Image to ImageList
                         try
@@ -192,7 +192,7 @@ namespace TachiLocal
                             imgKey = "img" + GlobalVar.ValidateZero(countImg);
                             this.Invoke(new Action(() => coverList.Images.Add(imgKey, img)));
                             countImg += 1;
-                            GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"ImagePath ({ imgKey }): { mangaPath }\\cover.jpg");
+                            GlobalVar.Log($"ListView Item ImagePath ({ imgKey }): { mangaPath }\\cover.jpg");
 
                         }
                         catch (Exception ex)
@@ -200,7 +200,7 @@ namespace TachiLocal
                             // Write to Error Log
                             imgKey = DEF_IMGKEY;
                             GlobalVar.LogError(ex);
-                            GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"Cannot load image for this");
+                            GlobalVar.Log($"Cannot load image for this item!");
                         }
 
                         // Deserialize JSON file
@@ -242,12 +242,12 @@ namespace TachiLocal
                         if (String.IsNullOrWhiteSpace(imgKey))
                         {
                             temp.ImageIndex = 0;
-                            GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"ImageIndex: 0");
+                            GlobalVar.Log($"ImageIndex: 0");
                         }
                         else
                         {
                             temp.ImageKey = imgKey;
-                            GlobalVar.WriteAppend(GlobalVar.FILE_LOG_ADDED, $"ImageKey used: { imgKey }");
+                            GlobalVar.Log($"ImageKey used: { imgKey }");
                         }
 
                         // Get last 3 Chapters

@@ -20,7 +20,7 @@ namespace TachiLocal.Global
         public static string FILE_CONFIG = Application.StartupPath + @"\Data\config.json";
         public static string FILE_MANGAPATH = Application.StartupPath + @"\Data\mangaPaths.txt";
         public static string FILE_MANGATACHI = Application.StartupPath + @"\Data\mangaTachiyomi.txt";
-        public static string FILE_LOG_ADDED = Application.StartupPath + @"\AddedFolders.txt";
+        public static string FILE_LOG = Application.StartupPath + @"\App.log";
 
         // ############################################################################################# Variables
         public static string pathMangaFolder { get; set; } = "";
@@ -28,6 +28,12 @@ namespace TachiLocal.Global
         public static string pathLogFileLocation { get; set; } = "";
 
         // ############################################################################################# Functions
+        // Log actions
+        public static void Log(string text)
+        {
+            // Log to file
+            WriteAppend(FILE_LOG, $"[{ DateTime.Now.ToString() }] {text}");
+        }
         // Log Error to File
         public static void LogError(Exception error, bool ShowMsg = false)
         {
