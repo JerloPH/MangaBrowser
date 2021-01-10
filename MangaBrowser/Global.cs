@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 
-namespace TachiLocal.Global
+namespace MangaBrowser.Global
 {
     public class GlobalVar
     {

@@ -1,4 +1,4 @@
-﻿namespace TachiLocal
+﻿namespace MangaBrowser
 {
     partial class frmMain
     {

@@ -13,9 +13,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using TachiLocal.Global;
+using MangaBrowser.Global;
 
-namespace TachiLocal
+namespace MangaBrowser
 {
     public partial class frmMain : Form
     {
