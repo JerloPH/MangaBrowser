@@ -188,11 +188,20 @@ namespace MangaBrowser
                         // Add Image to ImageList
                         try
                         {
-                            countImg += 1;
-                            var img = Image.FromFile(mangaPath + @"\cover.jpg");
-                            imgKey = "img" + GlobalVar.ValidateZero(countImg);
-                            this.Invoke(new Action(() => coverList.Images.Add(imgKey, img)));
-                            GlobalVar.Log($"ListView Item ImagePath ({ imgKey }): { mangaPath }\\cover.jpg");
+                            string imageFile = mangaPath + @"\cover.jpg";
+                            if (File.Exists(imageFile))
+                            {
+                                countImg += 1;
+                                var img = Image.FromFile(imageFile);
+                                imgKey = "img" + GlobalVar.ValidateZero(countImg);
+                                this.Invoke(new Action(() => coverList.Images.Add(imgKey, img)));
+                                GlobalVar.Log($"ListView Item ImagePath ({ imgKey }): { mangaPath }\\cover.jpg");
+                            }
+                            else
+                            {
+                                imgKey = DEF_IMGKEY;
+                                GlobalVar.Log($"File: 'cover.jpg' does not exists!");
+                            }
 
                         }
                         catch (Exception ex)
