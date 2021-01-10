@@ -195,7 +195,7 @@ namespace MangaBrowser
                                 var img = Image.FromFile(imageFile);
                                 imgKey = "img" + GlobalVar.ValidateZero(countImg);
                                 this.Invoke(new Action(() => coverList.Images.Add(imgKey, img)));
-                                GlobalVar.Log($"ListView Item ImagePath ({ imgKey }): { mangaPath }\\cover.jpg");
+                                GlobalVar.Log($"Added Image to ImageList. ImagePath ({ imgKey }): { mangaPath }\\cover.jpg");
                             }
                             else
                             {
@@ -251,12 +251,12 @@ namespace MangaBrowser
                         if (String.IsNullOrWhiteSpace(imgKey))
                         {
                             temp.ImageIndex = 0;
-                            GlobalVar.Log($"ImageIndex: 0");
+                            GlobalVar.Log($"ListView Item ImageIndex: 0");
                         }
                         else
                         {
                             temp.ImageKey = imgKey;
-                            GlobalVar.Log($"ImageKey used: { imgKey }");
+                            GlobalVar.Log($"ListView Item ImageKey used: { imgKey }");
                         }
 
                         // Get last 3 Chapters
