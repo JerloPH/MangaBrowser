@@ -282,7 +282,7 @@ namespace TachiLocal
                 int count = (int) e.Result;
 
                 // End of foreach loop
-                GlobalVar.WriteToFile(GlobalVar.pathLogFileLocation + @"\MangaInListView.txt", $"Total Items added: {count.ToString()}");
+                GlobalVar.Log($"Total Items added: {count.ToString()}");
             }
 
             //lvManga.LargeImageList = coverList;
