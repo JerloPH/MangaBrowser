@@ -11,7 +11,7 @@
 ## Requirements
 
 - 2GB or more RAM. <br>
-- Microsoft .NET Framework Runtime, version 4.6 or higher. [Download Link](https://dotnet.microsoft.com/download/dotnet-framework/net46) <br>
+- Microsoft .NET Framework Runtime, version 4.7.2 or higher. [Download Link](https://dotnet.microsoft.com/download/dotnet-framework/net472) <br>
 
 ****
 
