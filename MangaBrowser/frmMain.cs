@@ -93,9 +93,6 @@ namespace MangaBrowser
             tooltip.SetToolTip(btnOpen, "Open 'details.json' file in Notepad++");
             tooltip.SetToolTip(btnSave, "Save info to 'details.json'.");
 
-            // Others
-            SetPicboxImg();
-
             ShowLoading(false);
 
             // Start BGWorker to Check Manga Folder
@@ -109,6 +106,9 @@ namespace MangaBrowser
             // Dispose previous images
             this.Invoke(new Action(() => GlobalVar.DisposeImgList(coverList)));
             this.Invoke(new Action(() => coverList.Images.Add(DEF_IMGKEY, Image.FromFile(GlobalVar.FILE_DEF_COVER))));
+
+            // Set default Picture
+            this.Invoke(new Action(() => SetPicboxImg()));
 
             // Read Paths from mangaPaths.txt file in Data folder
             GlobalVar.pathMangaFolder = GlobalVar.ReadAllFromFile(GlobalVar.FILE_MANGAPATH);
