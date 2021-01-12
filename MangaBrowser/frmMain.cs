@@ -41,14 +41,8 @@ namespace MangaBrowser
         // Main Class Start-up
         public frmMain()
         {
-            try
-            {
-                formLoading.Show(this);
-            }
-            catch (Exception ex)
-            {
-                GlobalVar.LogError(ex);
-            }
+            ShowLoading(this);
+
             InitializeComponent();
 
             // Load-In app Settings
@@ -103,13 +97,16 @@ namespace MangaBrowser
             // Others
             SetPicboxImg();
 
+            ShowLoading(false);
+
             // Start BGWorker to Check Manga Folder
             bgwCheckMangaFolder.RunWorkerAsync();
-            
         }
         // ############################################################################## BACKGROUND WORKERS
         private void bgw_CMFstart(object sender, DoWorkEventArgs e)
         {
+            ShowLoading(this);
+
             // Read Paths from mangaPaths.txt file in Data folder
             GlobalVar.pathMangaFolder = GlobalVar.ReadAllFromFile(GlobalVar.FILE_MANGAPATH);
             GlobalVar.Log($"Manga Path: {GlobalVar.pathMangaFolder}");
@@ -297,7 +294,7 @@ namespace MangaBrowser
             //lvManga.LargeImageList = coverList;
             lvManga.Refresh();
             //lvManga.Invalidate();
-            LoadingClose();
+            ShowLoading(false);
         }
         // ############################################################################## FUNCTIONS
         // Load Settings from file
@@ -352,17 +349,6 @@ namespace MangaBrowser
             else
             {
                 GlobalVar.WriteToFile(file, json);
-            }
-        }
-        // Form that displays "Please wait while loading"
-        private void LoadingClose()
-        {
-            try
-            {
-                formLoading.Close();
-            } catch (Exception ex)
-            {
-                GlobalVar.LogError(ex);
             }
         }
         // Return Status string from int Index
@@ -463,7 +449,19 @@ namespace MangaBrowser
         private void AdjustButtons(int Main)
         {
             btnOpen.Top = Main;
-            btnSave.Top = btnOpen.Top;
+            btnSave.Top = Main;
+            btnReload.Top = Main;
+        }
+        // Show loading form, and close
+        private void ShowLoading(Form parent)
+        {
+            try { formLoading.Show(parent); }
+            catch (Exception ex) { GlobalVar.LogError(ex); }
+        }
+        private void ShowLoading(Boolean show)
+        {
+            try { formLoading.Close(); }
+            catch (Exception ex) { GlobalVar.LogError(ex); }
         }
         // ############################################################################## CUSTOM EVENTS
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -792,6 +790,15 @@ namespace MangaBrowser
                 }
             }
         }
-        
+        // Refresh Manga List
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            try { bgwCheckMangaFolder.RunWorkerAsync(); }
+            catch (Exception ex)
+            {
+                GlobalVar.ShowError("Cannot refresh list!");
+                GlobalVar.LogError(ex);
+            }
+        }
     }
 }

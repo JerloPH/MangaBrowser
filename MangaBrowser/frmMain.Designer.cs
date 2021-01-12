@@ -48,6 +48,7 @@
             this.picBox = new System.Windows.Forms.PictureBox();
             this.lbMangaTitle = new System.Windows.Forms.Label();
             this.cMenuLV = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnReload = new System.Windows.Forms.Button();
             this.fPanelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +71,7 @@
             // fPanelInfo
             // 
             this.fPanelInfo.BackColor = System.Drawing.Color.DarkGray;
+            this.fPanelInfo.Controls.Add(this.btnReload);
             this.fPanelInfo.Controls.Add(this.txtMangaPath);
             this.fPanelInfo.Controls.Add(this.btnOpen);
             this.fPanelInfo.Controls.Add(this.btnSave);
@@ -265,6 +267,18 @@
             this.cMenuLV.Name = "cMenuLV";
             this.cMenuLV.Size = new System.Drawing.Size(61, 4);
             // 
+            // btnReload
+            // 
+            this.btnReload.BackColor = System.Drawing.Color.Black;
+            this.btnReload.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnReload.Location = new System.Drawing.Point(273, 645);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(156, 39);
+            this.btnReload.TabIndex = 19;
+            this.btnReload.Text = "RELOAD";
+            this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -309,6 +323,7 @@
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.TextBox txtMangaPath;
         private System.Windows.Forms.ContextMenuStrip cMenuLV;
+        private System.Windows.Forms.Button btnReload;
     }
 }
 
