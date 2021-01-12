@@ -459,6 +459,12 @@ namespace MangaBrowser
             }
             return imageKey;
         }
+        // Adjust Buttons Position
+        private void AdjustButtons(int Main)
+        {
+            btnOpen.Top = Main;
+            btnSave.Top = btnOpen.Top;
+        }
         // ############################################################################## CUSTOM EVENTS
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -570,8 +576,7 @@ namespace MangaBrowser
                         txtMangaPath.Width = WFullBox;
                         txtMangaPath.Top = Convert.ToInt32(RClientH - (txtMangaPath.Height + 2));
 
-                        btnOpen.Top = Convert.ToInt32(txtMangaPath.Top - (btnOpen.Height + 2));
-                        btnSave.Top = btnOpen.Top;
+                        AdjustButtons(Convert.ToInt32(txtMangaPath.Top - (btnOpen.Height + 2)));
 
                     } catch (Exception ex)
                     {
@@ -607,8 +612,7 @@ namespace MangaBrowser
                         txtMangaPath.Width = WFullBox;
                         txtMangaPath.Top = Convert.ToInt32(RClientH - (txtMangaPath.Height + 50));
 
-                        btnOpen.Top = Convert.ToInt32(txtMangaPath.Top - (btnOpen.Height + 10));
-                        btnSave.Top = btnOpen.Top;
+                        AdjustButtons(Convert.ToInt32(txtMangaPath.Top - (btnOpen.Height + 10)));
 
                     } catch (Exception ex)
                     {
