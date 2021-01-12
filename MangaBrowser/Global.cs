@@ -254,6 +254,16 @@ namespace MangaBrowser.Global
             }
             return String.Empty;
         }
+        // Dispose Images in ImageList
+        public static void DisposeImgList(ImageList imglist)
+        {
+            foreach (Image img in imglist.Images)
+            {
+                img.Dispose();
+            }
+
+            imglist.Images.Clear();
+        }
         // #############################################################################################
     }
 }

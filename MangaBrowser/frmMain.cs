@@ -107,6 +107,9 @@ namespace MangaBrowser
         {
             ShowLoading(this);
 
+            // Dispose previous images
+            this.Invoke(new Action(() => GlobalVar.DisposeImgList(coverList)));
+
             // Read Paths from mangaPaths.txt file in Data folder
             GlobalVar.pathMangaFolder = GlobalVar.ReadAllFromFile(GlobalVar.FILE_MANGAPATH);
             GlobalVar.Log($"Manga Path: {GlobalVar.pathMangaFolder}");
