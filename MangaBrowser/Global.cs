@@ -17,10 +17,15 @@ namespace MangaBrowser.Global
         public static string appTitle = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
         public static string appVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static int appBuild = 1;
+
+        // Files in Root folder
+        public static string FILE_LOG = Application.StartupPath + @"\App.log";
+
+        // Files in "Data" folder
         public static string FILE_CONFIG = Application.StartupPath + @"\Data\config.json";
         public static string FILE_MANGAPATH = Application.StartupPath + @"\Data\mangaPaths.txt";
         public static string FILE_MANGATACHI = Application.StartupPath + @"\Data\mangaTachiyomi.txt";
-        public static string FILE_LOG = Application.StartupPath + @"\App.log";
+        public static string FILE_DEF_COVER = Application.StartupPath + @"\Data\cover.jpg";
 
         // ############################################################################################# Variables
         public static string pathMangaFolder { get; set; } = "";

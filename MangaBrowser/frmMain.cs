@@ -85,10 +85,9 @@ namespace MangaBrowser
             tOpenFolder = cMenuLV.Items.Add("&Open Folder");
             cMenuLV.ItemClicked += new ToolStripItemClickedEventHandler(cMenuLV_ItemCLicked);
 
-            // Other properties
+            // ImageList for ListView, Properties
             coverList.Images.Clear();
             coverList.ImageSize = new Size(150, 200);//new Size(154, 205);
-            coverList.Images.Add(DEF_IMGKEY, Image.FromFile(Application.StartupPath + @"\Data\cover.jpg"));
 
             ToolTip tooltip = new ToolTip();
             tooltip.SetToolTip(btnOpen, "Open 'details.json' file in Notepad++");
@@ -109,6 +108,7 @@ namespace MangaBrowser
 
             // Dispose previous images
             this.Invoke(new Action(() => GlobalVar.DisposeImgList(coverList)));
+            this.Invoke(new Action(() => coverList.Images.Add(DEF_IMGKEY, Image.FromFile(GlobalVar.FILE_DEF_COVER))));
 
             // Read Paths from mangaPaths.txt file in Data folder
             GlobalVar.pathMangaFolder = GlobalVar.ReadAllFromFile(GlobalVar.FILE_MANGAPATH);
