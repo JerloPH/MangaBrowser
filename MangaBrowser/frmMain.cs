@@ -74,7 +74,7 @@ namespace MangaBrowser
             lvManga.View = View.LargeIcon;
             lvManga.LargeImageList = coverList;
             //lvManga.SmallImageList = coverList;
-            lvManga.TileSize = new Size(240, 205);
+            lvManga.TileSize = new Size(120, 90);
             lvManga.Items.Clear();
             //lvManga.FindControl("ColDesc").Visible = false;
             lvManga.LargeImageList.ColorDepth = ColorDepth.Depth32Bit;
