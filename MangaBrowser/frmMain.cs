@@ -142,7 +142,7 @@ namespace MangaBrowser
                     {
                         foreach (string folder in Directory.GetDirectories(mainDir))
                         {
-                            if (Path.GetFileName(folder).StartsWith("_") == false)
+                            if (String.IsNullOrWhiteSpace(Path.GetFileName(folder)) == false)
                             {
                                 // Add to list
                                 list.Add(folder);
