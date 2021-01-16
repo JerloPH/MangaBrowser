@@ -28,9 +28,12 @@ namespace MangaBrowser.Global
         public static string FILE_DEF_COVER = Application.StartupPath + @"\Data\cover.jpg";
 
         // ############################################################################################# Variables
+        // Folder paths
         public static string pathMangaFolder { get; set; } = "";
         public static string pathTachiFolder { get; set; } = "";
         public static string pathLogFileLocation { get; set; } = "";
+        // Objects
+        public static Form formLoad { get; set; } = null;
 
         // ############################################################################################# Functions
         // Log actions
@@ -268,6 +271,25 @@ namespace MangaBrowser.Global
             }
 
             imglist.Images.Clear();
+        }
+        // Show/Close Loading Form
+        public static void ShowLoading(Form parent, bool Close = false)
+        {
+            // Create form
+            if ((formLoad == null) && (!Close))
+            {
+                parent.Invoke(new Action(() =>
+                {
+                    formLoad = new frmLoad("Please wait while Loading", "MangaBrowser Loading");
+                    formLoad.ShowDialog(parent);
+                }));
+            }
+            // Close the form
+            if ((formLoad != null) && (Close))
+            {
+                formLoad.Close();
+                formLoad = null;
+            }
         }
         // #############################################################################################
     }

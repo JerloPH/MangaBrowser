@@ -24,7 +24,6 @@ namespace MangaBrowser
         public string DEF_MANGAPATH = "Path To Manga Folder";
 
         // Setup
-        Form formLoading = new frmLoading();
         BackgroundWorker bgwCheckMangaFolder = new BackgroundWorker();
 
         public ImageList coverList = new ImageList();
@@ -41,9 +40,9 @@ namespace MangaBrowser
         // Main Class Start-up
         public frmMain()
         {
-            ShowLoading(this);
-
             InitializeComponent();
+
+            //GlobalVar.ShowLoading(this);
 
             // Load-In app Settings
             SettingsLoad();
@@ -93,7 +92,7 @@ namespace MangaBrowser
             tooltip.SetToolTip(btnOpen, "Open 'details.json' file in Notepad++");
             tooltip.SetToolTip(btnSave, "Save info to 'details.json'.");
 
-            ShowLoading(false);
+            //GlobalVar.ShowLoading(this, true);
 
             // Start BGWorker to Check Manga Folder
             bgwCheckMangaFolder.RunWorkerAsync();
@@ -101,11 +100,11 @@ namespace MangaBrowser
         // ############################################################################## BACKGROUND WORKERS
         private void bgw_CMFstart(object sender, DoWorkEventArgs e)
         {
+            GlobalVar.ShowLoading(this);
+
             // Invoke required
             this.Invoke(new Action(() =>
             {
-                ShowLoading(this);
-
                 // Dispose previous images
                 GlobalVar.DisposeImgList(coverList);
                 coverList.Images.Add(DEF_IMGKEY, Image.FromFile(GlobalVar.FILE_DEF_COVER));
@@ -301,7 +300,7 @@ namespace MangaBrowser
             //lvManga.LargeImageList = coverList;
             lvManga.Refresh();
             //lvManga.Invalidate();
-            ShowLoading(false);
+            GlobalVar.ShowLoading(this, true);
         }
         // ############################################################################## FUNCTIONS
         // Load Settings from file
@@ -458,17 +457,6 @@ namespace MangaBrowser
             btnOpen.Top = Main;
             btnSave.Top = Main;
             btnReload.Top = Main;
-        }
-        // Show loading form, and close
-        private void ShowLoading(Form parent)
-        {
-            try { formLoading.Show(parent); }
-            catch (Exception ex) { GlobalVar.LogError(ex); }
-        }
-        private void ShowLoading(Boolean show)
-        {
-            try { formLoading.Close(); }
-            catch (Exception ex) { GlobalVar.LogError(ex); }
         }
         // ############################################################################## CUSTOM EVENTS
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
