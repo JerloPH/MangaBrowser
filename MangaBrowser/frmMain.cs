@@ -119,7 +119,7 @@ namespace MangaBrowser
             GlobalVar.Log($"Tachiyomi Path: {GlobalVar.pathMangaFolder}");
 
             // Get all Folder Names from specified Path
-            string[] sDir = (!String.IsNullOrWhiteSpace(GlobalVar.pathMangaFolder)) ? GlobalVar.pathMangaFolder.Split(',') : null;
+            string[] sDir = (!String.IsNullOrWhiteSpace(GlobalVar.pathMangaFolder)) ? GlobalVar.pathMangaFolder.Split('\n') : null;
 
             // Vars and Objects
             List<string> list = new List<string>();
