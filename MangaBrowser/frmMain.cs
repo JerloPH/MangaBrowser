@@ -116,7 +116,7 @@ namespace MangaBrowser
 
             // Read Paths from mangaTachiyomi.txt file in Data folder
             GlobalVar.pathTachiFolder = GlobalVar.ReadAllFromFile(GlobalVar.FILE_MANGATACHI);
-            GlobalVar.Log($"Tachiyomi Path: {GlobalVar.pathMangaFolder}");
+            GlobalVar.Log($"Tachiyomi Path: {GlobalVar.pathTachiFolder}");
 
             // Get all Folder Names from specified Path
             string[] sDir = (!String.IsNullOrWhiteSpace(GlobalVar.pathMangaFolder)) ? GlobalVar.pathMangaFolder.Split('\n') : null;
