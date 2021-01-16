@@ -101,14 +101,18 @@ namespace MangaBrowser
         // ############################################################################## BACKGROUND WORKERS
         private void bgw_CMFstart(object sender, DoWorkEventArgs e)
         {
-            ShowLoading(this);
+            // Invoke required
+            this.Invoke(new Action(() =>
+            {
+                ShowLoading(this);
 
-            // Dispose previous images
-            this.Invoke(new Action(() => GlobalVar.DisposeImgList(coverList)));
-            this.Invoke(new Action(() => coverList.Images.Add(DEF_IMGKEY, Image.FromFile(GlobalVar.FILE_DEF_COVER))));
+                // Dispose previous images
+                GlobalVar.DisposeImgList(coverList);
+                coverList.Images.Add(DEF_IMGKEY, Image.FromFile(GlobalVar.FILE_DEF_COVER));
 
-            // Set default Picture
-            this.Invoke(new Action(() => SetPicboxImg()));
+                // Set default Picture
+                SetPicboxImg();
+            }));
 
             // Read Paths from mangaPaths.txt file in Data folder
             GlobalVar.pathMangaFolder = GlobalVar.ReadAllFromFile(GlobalVar.FILE_MANGAPATH);
