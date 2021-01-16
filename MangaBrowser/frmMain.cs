@@ -549,7 +549,7 @@ namespace MangaBrowser
                         sizeFPanel = 0.4;
                         Size nLV = new Size(Convert.ToInt32(this.ClientSize.Width * sizeLV), this.ClientSize.Height);
                         Size nFP = new Size(Convert.ToInt32(this.ClientSize.Width * sizeFPanel), this.ClientSize.Height);
-                        lvManga.Size = nLV;
+                        tabControl1.Size = nLV;
                         fPanelInfo.Size = nFP;
 
                         // Resize Right-side controls
@@ -583,7 +583,7 @@ namespace MangaBrowser
                     {
                         Rectangle handle = Screen.PrimaryScreen.WorkingArea;
                         Size newSizeLV = new Size(Convert.ToInt32(handle.Width * sizeLV), handle.Height);
-                        lvManga.Size = newSizeLV;
+                        tabControl1.Size = newSizeLV;
                         Size newSizePanel = new Size(Convert.ToInt32(handle.Width * sizeFPanel), handle.Height);
                         fPanelInfo.Size = newSizePanel;
 
