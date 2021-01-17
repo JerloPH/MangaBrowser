@@ -28,10 +28,8 @@ namespace MangaBrowser.Global
         public static string FILE_DEF_COVER = Application.StartupPath + @"\Data\cover.jpg";
 
         // Control Properties
-        public static Size SIZE_TILE_NORMAL = new Size(150,180);
-        public static Size SIZE_TILE_MAX = new Size(120, 150);
-        public static Size SIZE_IMG_NORMAL = new Size(90, 120);
-        public static Size SIZE_IMG_MAX = new Size(120, 150);//new Size(154, 205);
+        public static Size SIZEL_TILE = new Size(120, 150);
+        public static Size SIZEL_IMG = new Size(120, 150);//new Size(154, 205);
 
         // ############################################################################################# Variables
         // Folder paths

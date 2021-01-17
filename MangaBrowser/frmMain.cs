@@ -72,10 +72,9 @@ namespace MangaBrowser
             lvManga.View = View.LargeIcon;
             lvManga.LargeImageList = coverListLarge;
             //lvManga.SmallImageList = coverList;
-            lvManga.TileSize = GlobalVar.SIZE_TILE_MAX;
+            lvManga.TileSize = GlobalVar.SIZEL_TILE;
             lvManga.Items.Clear();
             //lvManga.FindControl("ColDesc").Visible = false;
-            lvManga.SmallImageList.ColorDepth = ColorDepth.Depth32Bit;
             lvManga.LargeImageList.ColorDepth = ColorDepth.Depth32Bit;
 
             cbStatus.Items.AddRange(cbItemStatus);
@@ -469,7 +468,7 @@ namespace MangaBrowser
                 img.Dispose();
             }
             coverListLarge.Images.Clear();
-            coverListLarge.ImageSize = GlobalVar.SIZE_IMG_MAX;
+            coverListLarge.ImageSize = GlobalVar.SIZEL_IMG;
         }
         // Add Image to ImageList
         private void ImgListAdd(string key, Image image)
