@@ -230,6 +230,7 @@
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnOpen
             // 
@@ -241,6 +242,7 @@
             this.btnOpen.TabIndex = 16;
             this.btnOpen.Text = "OPEN";
             this.btnOpen.UseVisualStyleBackColor = false;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // txtMangaPath
             // 
@@ -262,6 +264,7 @@
             this.btnReload.TabIndex = 19;
             this.btnReload.Text = "RELOAD";
             this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // fPanelInfo
             // 
@@ -309,6 +312,10 @@
             this.lvManga.Size = new System.Drawing.Size(608, 686);
             this.lvManga.TabIndex = 3;
             this.lvManga.UseCompatibleStateImageBehavior = false;
+            this.lvManga.UseCompatibleStateImageBehavior = false;
+            this.lvManga.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvManga_KeyDown);
+            this.lvManga.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvManga_MouseClick);
+            this.lvManga.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvManga_MouseDoubleClick);
             // 
             // frmMain
             // 
