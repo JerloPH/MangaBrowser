@@ -20,13 +20,12 @@ namespace MangaBrowser
     public partial class frmMain : Form
     {
         // Pre-run
-        public string breakLine = "###################################################################\n";
         public string DEF_MANGAPATH = "Path To Manga Folder";
 
         // Setup
         BackgroundWorker bgwCheckMangaFolder = new BackgroundWorker();
 
-        public ImageList coverList = new ImageList();
+        public ImageList coverListLarge = new ImageList();
 
         ToolStripItem tOpenFolder;
 
@@ -71,11 +70,12 @@ namespace MangaBrowser
             lvManga.MultiSelect = false;
             lvManga.Sorting = SortOrder.Ascending;
             lvManga.View = View.LargeIcon;
-            lvManga.LargeImageList = coverList;
+            lvManga.LargeImageList = coverListLarge;
             //lvManga.SmallImageList = coverList;
-            lvManga.TileSize = new Size(120, 90);
+            lvManga.TileSize = GlobalVar.SIZE_TILE_MAX;
             lvManga.Items.Clear();
             //lvManga.FindControl("ColDesc").Visible = false;
+            lvManga.SmallImageList.ColorDepth = ColorDepth.Depth32Bit;
             lvManga.LargeImageList.ColorDepth = ColorDepth.Depth32Bit;
 
             cbStatus.Items.AddRange(cbItemStatus);
@@ -85,8 +85,7 @@ namespace MangaBrowser
             cMenuLV.ItemClicked += new ToolStripItemClickedEventHandler(cMenuLV_ItemCLicked);
 
             // ImageList for ListView, Properties
-            coverList.Images.Clear();
-            coverList.ImageSize = new Size(150, 200);//new Size(154, 205);
+            ResetCoverList();
 
             ToolTip tooltip = new ToolTip();
             tooltip.SetToolTip(btnOpen, "Open 'details.json' file in Notepad++");
@@ -98,6 +97,7 @@ namespace MangaBrowser
             bgwCheckMangaFolder.RunWorkerAsync();
         }
         // ############################################################################## BACKGROUND WORKERS
+        #region Background Workers
         private void bgw_CMFstart(object sender, DoWorkEventArgs e)
         {
             GlobalVar.ShowLoading(this);
@@ -106,8 +106,8 @@ namespace MangaBrowser
             this.Invoke(new Action(() =>
             {
                 // Dispose previous images
-                GlobalVar.DisposeImgList(coverList);
-                coverList.Images.Add(DEF_IMGKEY, Image.FromFile(GlobalVar.FILE_DEF_COVER));
+                ResetCoverList();
+                ImgListAdd(DEF_IMGKEY, Image.FromFile(GlobalVar.FILE_DEF_COVER));
 
                 // Set default Picture
                 SetPicboxImg();
@@ -197,7 +197,7 @@ namespace MangaBrowser
                                 countImg += 1;
                                 var img = Image.FromFile(imageFile);
                                 imgKey = "img" + GlobalVar.ValidateZero(countImg);
-                                this.Invoke(new Action(() => coverList.Images.Add(imgKey, img)));
+                                this.Invoke(new Action(() => ImgListAdd(imgKey, img)));
                                 GlobalVar.Log($"Added Image to ImageList. ImagePath ({ imgKey }): { mangaPath }\\cover.jpg");
                             }
                             else
@@ -302,7 +302,9 @@ namespace MangaBrowser
             //lvManga.Invalidate();
             GlobalVar.ShowLoading(this, true);
         }
+        #endregion
         // ############################################################################## FUNCTIONS
+        #region Custom Functions
         // Load Settings from file
         private void SettingsLoad()
         {
@@ -372,12 +374,12 @@ namespace MangaBrowser
         // Set Image for picBox control
         private void SetPicboxImg(string ImageKey = "")
         {
-            int sel = coverList.Images.IndexOfKey(ImageKey);
+            int sel = coverListLarge.Images.IndexOfKey(ImageKey);
             if (sel < 1)
             {
                 sel = 0;
             }
-            picBox.Image = coverList.Images[sel];
+            picBox.Image = coverListLarge.Images[sel];
         }
         // Return Folder Names of Latest chapters, from Folder Path
         private string StringLatestChapters(string folderPath, int count)
@@ -442,9 +444,9 @@ namespace MangaBrowser
         // Return unique imageKey
         private string GetUniqueImgKey()
         {
-            int count = coverList.Images.Count;
+            int count = coverListLarge.Images.Count;
             string imageKey = "img" + GlobalVar.ValidateZero(count);
-            while (coverList.Images.ContainsKey(imageKey))
+            while (coverListLarge.Images.ContainsKey(imageKey))
             {
                 count += 1;
                 imageKey = "img" + GlobalVar.ValidateZero(count);
@@ -458,17 +460,33 @@ namespace MangaBrowser
             btnSave.Top = Main;
             btnReload.Top = Main;
         }
+        // Reset CoverList properties
+        private void ResetCoverList()
+        {
+            // Large Icon
+            foreach (Image img in coverListLarge.Images)
+            {
+                img.Dispose();
+            }
+            coverListLarge.Images.Clear();
+            coverListLarge.ImageSize = GlobalVar.SIZE_IMG_MAX;
+        }
+        // Add Image to ImageList
+        private void ImgListAdd(string key, Image image)
+        {
+            // Add to CoverList
+            coverListLarge.Images.Add(key, image);
+        }
+        #endregion
         // ############################################################################## CUSTOM EVENTS
+        #region Custom Events
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Save Settings
             //SettingSave(false);
 
             // Dispose objects
-            foreach (Image img in coverList.Images)
-            {
-                img.Dispose();
-            }
+            ResetCoverList();
 
             bgwCheckMangaFolder.Dispose();
         }
@@ -510,6 +528,7 @@ namespace MangaBrowser
                 }
             }
         }
+        #endregion
         // ############################################################################## STANDARD EVENTS
         // Start Up Actions
         private void frmMain_Load(object sender, EventArgs e)
@@ -744,9 +763,9 @@ namespace MangaBrowser
                         if (imageKey != DEF_IMGKEY)
                         {
                             // If imageKey already exists, remove it from image list
-                            if (coverList.Images.ContainsKey(imageKey))
+                            if (coverListLarge.Images.ContainsKey(imageKey))
                             {
-                                coverList.Images.RemoveByKey(imageKey);
+                                coverListLarge.Images.RemoveByKey(imageKey);
                             }
                         }
                         else
@@ -760,7 +779,7 @@ namespace MangaBrowser
                         {
                             // Copy, replace existing
                             File.Copy(selectedFilename, newCoverPath, true);
-                            coverList.Images.Add(imageKey, Image.FromFile(newCoverPath));
+                            ImgListAdd(imageKey, Image.FromFile(newCoverPath));
                             SetPicboxImg(imageKey);
 
                         }
