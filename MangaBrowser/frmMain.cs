@@ -564,11 +564,11 @@ namespace MangaBrowser
                     try
                     {
                         sizeLV = 0.55;
-                        sizeFPanel = 0.4;
-                        Size nLV = new Size(Convert.ToInt32(this.ClientSize.Width * sizeLV), this.ClientSize.Height);
-                        Size nFP = new Size(Convert.ToInt32(this.ClientSize.Width * sizeFPanel), this.ClientSize.Height);
-                        tabControl1.Size = nLV;
-                        fPanelInfo.Size = nFP;
+                        sizeFPanel = 0.45;
+                        Size newSizeTab = new Size(Convert.ToInt32(this.ClientSize.Width * sizeLV), this.ClientSize.Height);
+                        Size newSizeRightPanel = new Size(Convert.ToInt32(this.ClientSize.Width * sizeFPanel), this.ClientSize.Height);
+                        tabManga.Size = newSizeTab;
+                        fPanelInfo.Size = newSizeRightPanel;
 
                         // Resize Right-side controls
                         double RClientW = fPanelInfo.ClientSize.Width;
@@ -585,7 +585,7 @@ namespace MangaBrowser
                         txtTitle.Width = WFullBox;
 
                         txtMangaPath.Width = WFullBox;
-                        txtMangaPath.Top = Convert.ToInt32(RClientH - (txtMangaPath.Height + 2));
+                        txtMangaPath.Top = Convert.ToInt32(RClientH - (txtMangaPath.Height + 6));
 
                         AdjustButtons(Convert.ToInt32(txtMangaPath.Top - (btnOpen.Height + 2)));
 
@@ -601,7 +601,7 @@ namespace MangaBrowser
                     {
                         Rectangle handle = Screen.PrimaryScreen.WorkingArea;
                         Size newSizeLV = new Size(Convert.ToInt32(handle.Width * sizeLV), handle.Height);
-                        tabControl1.Size = newSizeLV;
+                        tabManga.Size = newSizeLV;
                         Size newSizePanel = new Size(Convert.ToInt32(handle.Width * sizeFPanel), handle.Height);
                         fPanelInfo.Size = newSizePanel;
 
