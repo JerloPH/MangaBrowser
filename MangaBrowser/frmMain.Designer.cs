@@ -52,8 +52,10 @@
             this.btnReload = new System.Windows.Forms.Button();
             this.fPanelInfo = new System.Windows.Forms.GroupBox();
             this.cMenuLV = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lvMangaTachi = new System.Windows.Forms.ListView();
             this.tabManga.SuspendLayout();
             this.pageManga.SuspendLayout();
+            this.pageTachi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
             this.fPanelInfo.SuspendLayout();
             this.SuspendLayout();
@@ -102,11 +104,12 @@
             // 
             // pageTachi
             // 
+            this.pageTachi.Controls.Add(this.lvMangaTachi);
             this.pageTachi.Location = new System.Drawing.Point(4, 25);
             this.pageTachi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pageTachi.Name = "pageTachi";
             this.pageTachi.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pageTachi.Size = new System.Drawing.Size(458, 557);
+            this.pageTachi.Size = new System.Drawing.Size(458, 562);
             this.pageTachi.TabIndex = 1;
             this.pageTachi.Text = "Tachiyomi";
             this.pageTachi.UseVisualStyleBackColor = true;
@@ -340,6 +343,19 @@
             this.cMenuLV.Name = "cMenuLV";
             this.cMenuLV.Size = new System.Drawing.Size(61, 4);
             // 
+            // lvMangaTachi
+            // 
+            this.lvMangaTachi.BackColor = System.Drawing.Color.Black;
+            this.lvMangaTachi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvMangaTachi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lvMangaTachi.HideSelection = false;
+            this.lvMangaTachi.Location = new System.Drawing.Point(2, 2);
+            this.lvMangaTachi.Margin = new System.Windows.Forms.Padding(2);
+            this.lvMangaTachi.Name = "lvMangaTachi";
+            this.lvMangaTachi.Size = new System.Drawing.Size(454, 558);
+            this.lvMangaTachi.TabIndex = 4;
+            this.lvMangaTachi.UseCompatibleStateImageBehavior = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,6 +375,7 @@
             this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.tabManga.ResumeLayout(false);
             this.pageManga.ResumeLayout(false);
+            this.pageTachi.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
             this.fPanelInfo.ResumeLayout(false);
             this.fPanelInfo.PerformLayout();
@@ -391,6 +408,7 @@
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.GroupBox fPanelInfo;
         private System.Windows.Forms.ContextMenuStrip cMenuLV;
+        internal System.Windows.Forms.ListView lvMangaTachi;
     }
 }
 
